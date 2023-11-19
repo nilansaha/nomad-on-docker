@@ -12,6 +12,7 @@ services:
       - -bootstrap-expect=1
       - -log-level=info
       - -data-dir=/data
+      - -config=/config.hcl
     volumes:
       - type: bind
         source: /sys/fs/cgroup
@@ -22,6 +23,9 @@ services:
       - type: volume
         source: nomad-data
         target: /data
+      - type: bind
+        source: ./config.hcl
+        target: /config.hcl
     deploy:
       resources:
         limits:
